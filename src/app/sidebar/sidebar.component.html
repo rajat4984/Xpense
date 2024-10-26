@@ -1,0 +1,33 @@
+<div class="absolute bg-white top-0 w-9/12 h-full p-3">
+  <div class="absolute left-[95%] bg-white flex border-3 border-white rounded-full">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </div>
+  <div class="mt-8">
+    <div
+      class="font-extrabold text-3xl text-primary_text flex items-center lg:hidden"
+    >
+      <!-- <span class="bg-activebg mr-2 rounded-full py-1.5 px-4">X</span> -->
+      <div class="w-14 mx-2 flex">
+        <img
+          class="rounded-full shadow-lg border-2 border-white"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUWPPJeKqMFiZdty1MgpNIUzPE0NYsz0Y0NA&s"
+        />
+      </div>
+      Xpense
+    </div>
+    <div class="mt-12">
+      <p class="text-lg mb-3 text-secondary_text pl-3">Main menu</p>
+      <div class="text-xl">
+        @for(menuItem of mainMenuArr; track menuItem.key){
+        <!-- <div class="flex items-center bg-activebg p-3 rounded-lg text-primary_text"> when active -->
+        <div class="flex items-center p-3 rounded-lg">
+          <mat-icon class="text-primary_text mr-2">{{
+            menuItem.icon
+          }}</mat-icon>
+          <p>{{ menuItem.name }}</p>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
