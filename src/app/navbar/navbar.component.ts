@@ -8,6 +8,8 @@ import {
   transition,
 } from '@angular/animations';
 import { CommonModule } from '@angular/common';
+import { SharedService } from '../services/shared.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -35,10 +37,23 @@ import { CommonModule } from '@angular/common';
   ],
 })
 export class NavbarComponent {
-  isOpen = true;
+  receivedData: boolean | undefined;
+  private unsubscribe = new Subject<void>();
+
+  isOpen = false;
+  constructor(private sharedService: SharedService) {}
+
+  ngOnInit(): void {
+    this.sharedService
+      .getData$()
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe((data) => {
+        this.receivedData = data;
+      });
+  }
 
   toggle() {
-    console.log('Hello');
-    this.isOpen = !this.isOpen;
+    this.receivedData = !this.receivedData;
+    this.sharedService.setData(this.receivedData);
   }
 }

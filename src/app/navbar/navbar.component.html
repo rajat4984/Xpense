@@ -7,18 +7,21 @@
     <div class="p-3 rounded-xl shadow-lg hidden lg:flex mx-2">
       <mat-icon class="text-primary_text">brightness_2</mat-icon>
     </div>
-    <div class="p-3  rounded-xl shadow-lg flex mx-2">
-      <mat-icon class="text-primary_text ">notifications</mat-icon>
+    <div class="p-3 rounded-xl shadow-lg flex mx-2">
+      <mat-icon class="text-primary_text">notifications</mat-icon>
     </div>
 
-    <div class="w-14 mx-2 hidden lg:flex">
+    <!-- <div class="w-14 mx-2 hidden">
       <img
         class="rounded-full shadow-lg border-2 border-white"
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUWPPJeKqMFiZdty1MgpNIUzPE0NYsz0Y0NA&s"
       />
-    </div>
+    </div> -->
 
-    <div class="p-3 flex rounded-xl shadow-lg lg:hidden md:mx-2">
+    <div
+      (click)="toggle()"
+      class="p-3 flex rounded-xl shadow-lg lg:hidden md:mx-2"
+    >
       <mat-icon class="text-primary_text">menu</mat-icon>
     </div>
   </div>

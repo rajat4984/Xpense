@@ -1,10 +1,16 @@
-<div class="absolute bg-white top-0 w-9/12 h-full p-3">
-  <div class="absolute left-[95%] bg-white flex border-3 border-white rounded-full">
+<div
+  class="absolute bg-white top-0 w-9/12 min-h-screen p-3  lg:w-full lg:static   sidebar-container"
+  [@openClose]="receivedData || isSmallScreen ? 'open' : 'close'"
+>
+  <div
+    class="absolute left-[95%] bg-white flex border-3 border-white rounded-full lg:hidden"
+    (click)="toggle()"
+  >
     <mat-icon>keyboard_arrow_left</mat-icon>
   </div>
   <div class="mt-8">
     <div
-      class="font-extrabold text-3xl text-primary_text flex items-center lg:hidden"
+      class="font-extrabold text-3xl text-primary_text flex items-center"
     >
       <!-- <span class="bg-activebg mr-2 rounded-full py-1.5 px-4">X</span> -->
       <div class="w-14 mx-2 flex">
@@ -24,7 +30,7 @@
           <mat-icon class="text-primary_text mr-2">{{
             menuItem.icon
           }}</mat-icon>
-          <p>{{ menuItem.name }}</p>
+          <p class="sidebar-items">{{ menuItem.name }}</p>
         </div>
         }
       </div>

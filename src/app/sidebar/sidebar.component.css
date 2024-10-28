@@ -1,0 +1,7 @@
+.sidebar-container {
+  transition: 0.3s ease-in-out;
+}
+
+.sidebar-items {
+  margin-bottom: 0 !important;
+}
