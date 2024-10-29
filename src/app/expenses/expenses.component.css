@@ -1,0 +1,25 @@
+.progress {
+  position: relative;
+  margin: 4px;
+  float: left;
+  text-align: center;
+}
+.barOverflow {
+  /* Wraps the rotating .bar */
+  position: relative;
+  overflow: hidden; /* Comment this line to understand the trick */
+  width: 300px;
+  height: 150px; /* Half circle (overflow) */
+}
+.bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px; /* full circle! */
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 20px solid #eee; /* half gray, */
+  border-bottom-color: #0bf; /* half azure */
+  border-right-color: #0bf;
+}
