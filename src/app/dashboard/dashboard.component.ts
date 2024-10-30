@@ -3,6 +3,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { BankCardComponent } from '../bank-card/bank-card.component';
 import { RecentTransactionsComponent } from '../recent-transactions/recent-transactions.component';
 import { ExpensesComponent } from '../expenses/expenses.component';
+import { SidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +13,8 @@ import { ExpensesComponent } from '../expenses/expenses.component';
     BankCardComponent,
     RecentTransactionsComponent,
     ExpensesComponent,
-  ],
+    SidebarComponent
+],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })

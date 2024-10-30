@@ -1,14 +1,27 @@
-<div class="px-5 py-8 lg:mx-4 ">
-  <app-navbar />
-  <div class="md:grid grid-cols-2 gap-5 my-5">
-    <app-bank-card />
-    <div class="bg-white p-3  rounded-xl text-center shadow-2xl mt-2 mb-8 flex flex-col justify-center lg:m-0">
-      <p class="text-md font-medium mb-0 text-black text-center">Your Total balance</p>
-      <p class="text-primary_text font-semibold text-4xl mt-5 mb-2">$80,201.50</p>
-      <p class="text-secondary_text mt-0 text-xs">December 21,2024</p>
-    </div>
+<div class="lg:flex flex-row-reverse justify-between">
+  <div class="lg:flex-1">
+    <div class="px-5 py-8 lg:mx-4">
+      <app-navbar />
 
-    <app-recent-transactions/>
-    <app-expenses/>
+      <div class="md:grid grid-cols-2 gap-5 my-5">
+        <app-bank-card />
+        <div
+          class="bg-white p-3 rounded-xl text-center shadow-2xl mt-2 mb-8 flex flex-col justify-center lg:m-0"
+        >
+          <p class="text-md font-medium mb-0 text-black text-center">
+            Your Total balance
+          </p>
+          <p class="text-primary_text font-semibold text-4xl mt-5 mb-2">
+            $80,201.50
+          </p>
+          <p class="text-secondary_text mt-0 text-xs">December 21,2024</p>
+        </div>
+
+        <app-recent-transactions />
+        <app-expenses />
+      </div>
+    </div>
   </div>
+
+  <app-sidebar class="lg:flex-[0.25]" />
 </div>
