@@ -1,1 +1,25 @@
-<p>registeration works!</p>
+<form class="flex flex-col">
+  <input placeholder="Email" type="email" [(ngModel)]="email" name="email" />
+  <input
+    placeholder="Password"
+    type="password"
+    [(ngModel)]="password"
+    name="password"
+  />
+  <input
+    placeholder="Confirm password"
+    type="password"
+    [(ngModel)]="confirmPassword"
+    name="confirmPassword"
+  />
+  <div class="flex items-end justify-between">
+    <input
+      *ngIf="!isLoading"
+      type="submit"
+      class="bg-primary_text text-white items-center rounded-lg cursor-pointer flex-[.5]"
+      (click)="register($event)"
+    />
+    <p class="text-xs text-primary_text">Already have an account?</p>
+  </div>
+  <app-loader *ngIf="isLoading" class="mx-auto mt-4"></app-loader>
+</form>

@@ -78,6 +78,13 @@ export class AuthService {
 
   async forgotPassword(email: string) {
     try {
+      const isUserRegistered = await this.fireAuth.fetchSignInMethodsForEmail(
+        email
+      );
+      if (isUserRegistered.length === 0) {
+        alert('User is not registered');
+        return;
+      }
       await this.fireAuth.sendPasswordResetEmail(email);
       alert('Password reset mail has been sent');
     } catch (error: any) {

@@ -1,1 +1,20 @@
-<p>login works!</p>
+<form class="flex flex-col">
+  <input placeholder="Email" type="email" name="email" [(ngModel)]="email" />
+  <input
+    placeholder="Password"
+    type="password"
+    name="password"
+    [(ngModel)]="password"
+  />
+  <div class="flex items-end justify-between">
+    <input
+      *ngIf="!isLoading"
+      type="submit"
+      (click)="login()"
+      class="bg-primary_text flex-[.5] text-white items-center rounded-lg"
+    />
+
+    <p class="text-primary_text text-xs" (click)="handleForgotPassword()">Forgot password?</p>
+  </div>
+  <app-loader *ngIf="isLoading" class="mx-auto mt-4"></app-loader>
+</form>

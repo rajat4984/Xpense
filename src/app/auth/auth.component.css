@@ -1,0 +1,14 @@
+.authCard {
+  box-shadow: 2px 1px 19px 1px rgba(27, 103, 112, 1);
+  padding: 5% 8%;
+  border-radius: 20px;
+}
+
+
+@media  (max-width:468px){
+    .authCard {
+        box-shadow: none;
+    }
+}
+
+

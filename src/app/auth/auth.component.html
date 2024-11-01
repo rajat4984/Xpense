@@ -1,0 +1,47 @@
+<div class="px-5 py-8 lg:mx-4">
+  <div>
+    <app-navbar></app-navbar>
+  </div>
+  <div class="relative h-screen">
+    <div
+      class="absolute left-1/2 top-[20%] md:top-[30%] authCard transform -translate-x-1/2 md:-translate-y-[30%] -translate-y-[20%]"
+    >
+      <div class="flex justify-center items-center mb-10">
+        <p
+          class="border border-primary_text border-r-transparent p-2 text-lg rounded-lg rounded-r-none px-4 cursor-pointer text-primary_text"
+          [ngClass]="{
+            'bg-[#96bbc5] text-primary_text': authSwitch == 'login'
+          }"
+          (click)="toggleSwitch('login')"
+        >
+          Login
+        </p>
+        <p
+          class="border border-primary_text p-2 text-lg rounded-lg rounded-l-none px-4 cursor-pointer"
+          [ngClass]="{
+            'bg-[#96bbc5] text-primary_text': authSwitch == 'signup'
+          }"
+          (click)="toggleSwitch('signup')"
+        >
+          Signup
+        </p>
+      </div>
+      <div class="flex items-center gap-[50px]">
+        <div>
+          <app-login
+            [isLoading]="isLoading"
+            *ngIf="authSwitch === 'login'"
+          ></app-login>
+          <app-registeration
+            [isLoading]="isLoading"
+            *ngIf="authSwitch === 'signup'"
+          ></app-registeration>
+        </div>
+        <div class="w-[300px] hidden md:block">
+          <img src="media/auth.svg" />
+        </div>
+      </div>
+    </div>
+    <!-- <app-login></app-login> -->
+  </div>
+</div>

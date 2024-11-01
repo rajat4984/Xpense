@@ -8,21 +8,33 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    {
+      provide: FIREBASE_OPTIONS,
+      useValue: {
+        projectId: 'anuglar-e96e9',
+        appId: '1:422820374401:web:22a3454ea2168a6196ea80',
+        storageBucket: 'anuglar-e96e9.appspot.com',
+        apiKey: 'AIzaSyDGvPLDNE3FwCeK9e1fo_DHmHo6jBQlNwI',
+        authDomain: 'anuglar-e96e9.firebaseapp.com',
+        messagingSenderId: '422820374401',
+      },
+    },
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(),
     provideAnimationsAsync('noop'),
     provideFirebaseApp(() =>
       initializeApp({
-        projectId: environment.firebase.projectId,
-        appId: environment.firebase.appId,
-        storageBucket: environment.firebase.storageBucket,
-        apiKey: environment.firebase.apiKey,
-        authDomain: environment.firebase.authDomain,
-        messagingSenderId: environment.firebase.messagingSenderId,
+        projectId: 'anuglar-e96e9',
+        appId: '1:422820374401:web:22a3454ea2168a6196ea80',
+        storageBucket: 'anuglar-e96e9.appspot.com',
+        apiKey: 'AIzaSyDGvPLDNE3FwCeK9e1fo_DHmHo6jBQlNwI',
+        authDomain: 'anuglar-e96e9.firebaseapp.com',
+        messagingSenderId: '422820374401',
       })
     ),
     provideAuth(() => getAuth()),
