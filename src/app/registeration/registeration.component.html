@@ -19,7 +19,7 @@
       class="bg-primary_text text-white items-center rounded-lg cursor-pointer flex-[.5]"
       (click)="register($event)"
     />
-    <p class="text-xs text-primary_text">Already have an account?</p>
+    <p class="text-xs text-primary_text" (click)="toggleSwitch('login')">Already have an account?</p>
   </div>
   <app-loader *ngIf="isLoading" class="mx-auto mt-4"></app-loader>
 </form>

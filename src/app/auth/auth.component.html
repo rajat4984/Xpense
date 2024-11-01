@@ -1,6 +1,6 @@
 <div class="px-5 py-8 lg:mx-4">
   <div>
-    <app-navbar></app-navbar>
+    <app-navbar [subHeading]="''" [logo]="'Xpense'"></app-navbar>
   </div>
   <div class="relative h-screen">
     <div
@@ -27,15 +27,28 @@
         </p>
       </div>
       <div class="flex items-center gap-[50px]">
-        <div>
+        <div class="flex flex-col items-center">
           <app-login
             [isLoading]="isLoading"
             *ngIf="authSwitch === 'login'"
           ></app-login>
           <app-registeration
+            [toggleSwitch]="toggleSwitch"
             [isLoading]="isLoading"
             *ngIf="authSwitch === 'signup'"
           ></app-registeration>
+          <p
+            class="text-primary_text mt-10 mb-3 font-medium googleSignIn mx-4 flex items-center"
+          >
+            or
+          </p>
+          <div
+            class="flex items-center bg-white w-max p-2 rounded-lg cursor-pointer"
+            (click)="handleGoogleSignIn()"
+          >
+            <img src="/media/google.png" class="w-6 h-6" />&nbsp;Sign in With
+            <span class="font-medium">&nbsp; Google</span>
+          </div>
         </div>
         <div class="w-[300px] hidden md:block">
           <img src="media/auth.svg" />

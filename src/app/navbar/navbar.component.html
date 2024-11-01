@@ -1,8 +1,14 @@
 <nav class="grid grid-cols-2 justify-between">
   <div class="flex-1">
-    <p class="font-bold text-3xl mb-2 text-primary_text">Welcome to Xpense</p>
-    <p class="text-md text-secondary_text">Hi, Rajat. Welcome Back.</p>
-</div>
+    <p
+      [routerLink]="['/dashboard']"
+      routerLinkActive="router-link-active"
+      class="font-bold text-3xl mb-2 text-primary_text cursor-pointer"
+    >
+      {{ logo }}
+    </p>
+    <p class="text-md text-secondary_text">{{ subHeading }}</p>
+  </div>
   <div class="flex items-center flex-1 justify-self-end self-baseline">
     <div class="p-3 rounded-xl shadow-lg hidden lg:flex mx-2">
       <mat-icon class="text-primary_text">brightness_2</mat-icon>

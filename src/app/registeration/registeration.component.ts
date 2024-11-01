@@ -7,12 +7,13 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-registeration',
   standalone: true,
-  imports: [FormsModule, LoaderComponent,CommonModule],
+  imports: [FormsModule, LoaderComponent, CommonModule],
   templateUrl: './registeration.component.html',
   styleUrl: './registeration.component.css',
 })
 export class RegisterationComponent {
   @Input() isLoading!: boolean;
+  @Input() toggleSwitch!: (switchText: string) => void;
   email: string = '';
   password: string = '';
   confirmPassword: string = '';

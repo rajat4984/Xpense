@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { GoogleAuthProvider } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { LoaderService } from './loader.service';
 
@@ -90,5 +91,17 @@ export class AuthService {
     } catch (error: any) {
       alert(error.message);
     }
+  }
+
+  async signInWithGoogle() {
+    return this.fireAuth.signInWithPopup(new GoogleAuthProvider()).then(
+      (res) => {
+        this.router.navigate(['/dashboard']);
+        localStorage.setItem('token', JSON.stringify(res.user?.uid));
+      },
+      (err) => {
+        alert(err.message);
+      }
+    );
   }
 }

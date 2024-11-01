@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import {
   trigger,
@@ -10,11 +10,12 @@ import {
 import { CommonModule } from '@angular/common';
 import { SharedService } from '../services/shared.service';
 import { Subject, takeUntil } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [MatIconModule, CommonModule],
+  imports: [MatIconModule, CommonModule,RouterLink],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
   animations: [
@@ -37,6 +38,8 @@ import { Subject, takeUntil } from 'rxjs';
   ],
 })
 export class NavbarComponent {
+  @Input() subHeading: string = '';
+  @Input() logo:string = "";
   receivedData: boolean | undefined;
   private unsubscribe = new Subject<void>();
 
