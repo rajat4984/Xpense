@@ -11,6 +11,7 @@ import {
   transition,
 } from '@angular/animations';
 import { isPlatformBrowser } from '@angular/common';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -49,7 +50,8 @@ export class SidebarComponent {
 
   constructor(
     private sharedService: SharedService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private authService: AuthService
   ) {
     if (isPlatformBrowser(this.platformId)) {
       this.isSmallScreen = window.innerWidth >= 1024; // Initialize based on window size
@@ -68,6 +70,10 @@ export class SidebarComponent {
   toggle() {
     this.receivedData = !this.receivedData;
     this.sharedService.setData(this.receivedData);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
   mainMenuArr = [
@@ -105,6 +111,13 @@ export class SidebarComponent {
       key: 7,
       name: 'Help Center',
       icon: 'contact_support',
+      clickFunc: () => alert(),
+    },
+    {
+      key: 8,
+      name: 'Logout',
+      icon: '',
+      clickFunc: () => this.logout(), // Define as a function reference
     },
   ];
 }
