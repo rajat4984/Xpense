@@ -3,6 +3,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     DashboardComponent,
     RouterOutlet,
     RouterLink,
+    NotificationComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -21,4 +23,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 export class AppComponent {
   title = 'xpense';
   isAuth = false;
+
+  
 }

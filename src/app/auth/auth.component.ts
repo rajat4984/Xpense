@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { RegisterationComponent } from '../registeration/registeration.component';
 import { LoaderService } from '../services/loader.service';
 import { AuthService } from '../services/auth.service';
+import { NotificationComponent } from '../notification/notification.component';
 
 @Component({
   selector: 'app-auth',

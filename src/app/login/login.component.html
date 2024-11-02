@@ -14,7 +14,12 @@
       class="bg-primary_text flex-[.5] text-white items-center rounded-lg"
     />
 
-    <p class="text-primary_text text-xs" (click)="handleForgotPassword()">Forgot password?</p>
+    <p
+      class="text-primary_text text-xs cursor-pointer"
+      (click)="handleForgotPassword()"
+    >
+      Forgot password?
+    </p>
   </div>
   <app-loader *ngIf="isLoading" class="mx-auto mt-4"></app-loader>
 </form>

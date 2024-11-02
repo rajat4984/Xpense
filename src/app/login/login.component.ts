@@ -3,6 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { LoaderComponent } from '../loader/loader.component';
 import { CommonModule } from '@angular/common';
+import { AppState } from '../store/index.reducers';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { showNotification } from '../store/global/global.actions';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +19,17 @@ export class LoginComponent {
   @Input() isLoading!: boolean;
   email: string = '';
   password: string = '';
+  isShowNotification$ = new Observable<boolean>();
+  
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private store: Store<AppState>
+  ) {
+    this.isShowNotification$ = this.store.select(
+      (state) => state.global.isShowNotification
+    );
+  }
 
   login(): void {
     if (this.email !== '' && this.password !== '')
@@ -28,9 +41,14 @@ export class LoginComponent {
   handleForgotPassword(): void {
     if (this.email === '') {
       alert("Email can't be empty");
+      this.showNotification("Email can't be empty",'error');
       return;
     }
 
     this.authService.forgotPassword(this.email);
+  }
+
+  showNotification(notificationText: string,notificationIcon:string) {
+    this.store.dispatch(showNotification({ notificationText,notificationIcon }));
   }
 }

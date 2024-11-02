@@ -9,6 +9,8 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { provideStore } from '@ngrx/store';
+import { reducers } from './store/index.reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -39,5 +41,6 @@ export const appConfig: ApplicationConfig = {
     ),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    provideStore(reducers),
   ],
 };

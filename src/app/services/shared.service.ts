@@ -6,6 +6,9 @@ import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 })
 export class SharedService {
   private dataSubject: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
+  private isShowNotification: boolean = false;
+
+  constructor() {}
 
   setData(data: boolean): void {
     this.dataSubject.next(data);
@@ -15,5 +18,10 @@ export class SharedService {
     return this.dataSubject.asObservable();
   }
 
-  constructor() {}
+  showNotification() {
+    this.isShowNotification = true;
+    setTimeout(() => {
+      this.isShowNotification = false;
+    }, 3000);
+  }
 }
