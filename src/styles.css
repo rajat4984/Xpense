@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
   --graybg: "#EBF0F3";
 }
@@ -19,6 +18,7 @@
 html,
 body {
   height: 100%;
+  overflow-x: hidden;
 }
 body {
   margin: 0;
@@ -28,18 +28,15 @@ body {
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
-
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
   background: transparent;
- 
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #1B6770;
+  background: #1b6770;
   border-radius: 10px;
 }
-

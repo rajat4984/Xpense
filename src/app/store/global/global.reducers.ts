@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { showNotification } from './global.actions';
+import { showNotification, hideNotification } from './global.actions';
 
 export interface globalStateInterface {
   isShowNotification: boolean;
@@ -28,7 +28,8 @@ const showNotificationReducer = (
 
 export const globalReducer = createReducer(
   globalState,
-  on(showNotification, (state, { notificationText,notificationIcon }) =>
-    showNotificationReducer(state, notificationText,notificationIcon)
-  )
+  on(showNotification, (state, { notificationText, notificationIcon }) =>
+    showNotificationReducer(state, notificationText, notificationIcon)
+  ),
+  on(hideNotification, (state) => ({ ...state, isShowNotification: false }))
 );

@@ -1,9 +1,13 @@
 <div
+  [@openNotification]="(notification$ | async) ? 'open' : 'close'"
   id="toast-success"
   class="flex items-center w-full max-w-xs p-4 mb-4 rounded-lg bg-graybg shadow-xl text-primary_text absolute top-5 right-5 notificationCard"
   role="alert"
 >
-  <div class="flex items-center">
+  <div
+    class="flex items-center"
+    *ngIf="(notificationIcon$ | async) === 'success'"
+  >
     <div
       class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200"
     >
@@ -20,7 +24,7 @@
       </svg>
       <span class="sr-only">Check icon</span>
     </div>
-    <div class="ms-3 text-sm font-normal">Very good noitifcation</div>
+    <div class="ms-3 text-sm font-normal">{{ notificationText$ | async }}</div>
   </div>
 
   <div

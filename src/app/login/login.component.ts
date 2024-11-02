@@ -6,7 +6,10 @@ import { CommonModule } from '@angular/common';
 import { AppState } from '../store/index.reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { showNotification } from '../store/global/global.actions';
+import {
+  hideNotification,
+  showNotification,
+} from '../store/global/global.actions';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +23,6 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
   isShowNotification$ = new Observable<boolean>();
-  
 
   constructor(
     private authService: AuthService,
@@ -40,15 +42,20 @@ export class LoginComponent {
 
   handleForgotPassword(): void {
     if (this.email === '') {
-      alert("Email can't be empty");
-      this.showNotification("Email can't be empty",'error');
+      this.showNotification("Email can't be empty", 'error');
       return;
     }
 
     this.authService.forgotPassword(this.email);
   }
 
-  showNotification(notificationText: string,notificationIcon:string) {
-    this.store.dispatch(showNotification({ notificationText,notificationIcon }));
+  showNotification(notificationText: string, notificationIcon: string) {
+    this.store.dispatch(
+      showNotification({ notificationText, notificationIcon })
+    );
+
+    setTimeout(() => {
+      this.store.dispatch(hideNotification());
+    }, 2000);
   }
 }

@@ -111,13 +111,12 @@ export class SidebarComponent {
       key: 7,
       name: 'Help Center',
       icon: 'contact_support',
-      clickFunc: () => alert(),
     },
     {
       key: 8,
       name: 'Logout',
       icon: '',
-      clickFunc: () => this.logout(), // Define as a function reference
+      clickFunc: () => this.logout(),
     },
   ];
 }

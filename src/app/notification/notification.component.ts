@@ -4,12 +4,33 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../store/index.reducers';
 import { CommonModule } from '@angular/common';
 import { globalStateInterface } from '../store/global/global.reducers';
+import { state, style, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-notification',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './notification.component.html',
+animations: [
+    trigger('openNotification', [
+      state(
+        'open',
+        style({
+          visibility: 'visible',
+          transform: 'translateX(0)',
+          opacity: 1,
+        })
+      ),
+      state(
+        'close',
+        style({
+          visibility: 'hidden',
+          transform: 'translateX(150%)',
+          opacity: 0,
+        })
+      ),
+    ]),
+  ],
   styleUrl: './notification.component.css',
 })
 export class NotificationComponent {
