@@ -3,19 +3,42 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { GoogleAuthProvider } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { LoaderService } from './loader.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/index.reducers';
+import { Observable } from 'rxjs';
+import {
+  hideNotification,
+  showNotification,
+} from '../store/global/global.actions';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  isShowNotification$ = new Observable<boolean>();
   constructor(
     private fireAuth: AngularFireAuth,
     private router: Router,
-    private loaderService: LoaderService
-  ) {}
+    private loaderService: LoaderService,
+    private store: Store<AppState>
+  ) {
+    this.isShowNotification$ = this.store.select(
+      (state) => state.global.isShowNotification
+    );
+  }
+
+  showNotification(notificationText: string, notificationIcon: string) {
+    this.store.dispatch(
+      showNotification({ notificationText, notificationIcon })
+    );
+
+    setTimeout(() => {
+      this.store.dispatch(hideNotification());
+    }, 2000);
+  }
 
   async login(email: string, password: string) {
-    this.loaderService.showLoader(); // Start loader
+    this.loaderService.showLoader();
 
     try {
       const response = await this.fireAuth.signInWithEmailAndPassword(
@@ -23,33 +46,31 @@ export class AuthService {
         password
       );
       if (response.user?.emailVerified == true) {
+        localStorage.setItem('userId', response.user.uid);
         this.router.navigate(['dashboard']);
       } else {
-        alert('User is not verified');
+        this.showNotification('User is not verified', 'error');
       }
-
-      localStorage.setItem('token', 'true');
-    } catch (error) {
-      alert('Something went wrong');
+    } catch (error: any) {
+      this.showNotification('User is not found', 'error');
     } finally {
-      this.loaderService.hideLoader(); // Stop loader
+      this.loaderService.hideLoader();
     }
   }
 
   // Register method remains the same
   async register(email: string, password: string) {
-    this.loaderService.showLoader(); // Stop loader
+    this.loaderService.showLoader();
     try {
       const response = await this.fireAuth.createUserWithEmailAndPassword(
         email,
         password
       );
       this.sendRegisterationLink(response.user);
-      alert('Email sent to registered login');
-      this.router.navigate(['dashboard']);
+      this.showNotification('Email sent to registered login', 'success');
     } catch (error: any) {
-      alert(error.message);
-      this.router.navigate(['/auth']);
+      this.showNotification('Cannot register something went wrong', 'error');
+      console.log(error.message);
     } finally {
       this.loaderService.hideLoader();
     }
@@ -60,6 +81,7 @@ export class AuthService {
     this.fireAuth.signOut().then(
       () => {
         localStorage.removeItem('token');
+        this.showNotification('User logged out', 'success');
         this.router.navigate(['/']);
       },
       (err) => {
@@ -83,11 +105,15 @@ export class AuthService {
         email
       );
       if (isUserRegistered.length === 0) {
-        alert('User is not registered');
+        this.showNotification('User is not registered', 'error');
+
+        // alert('User is not registered');
         return;
       }
       await this.fireAuth.sendPasswordResetEmail(email);
-      alert('Password reset mail has been sent');
+      this.showNotification('Password reset mail has been sent', 'success');
+
+      // alert('Password reset mail has been sent');
     } catch (error: any) {
       alert(error.message);
     }
@@ -97,7 +123,7 @@ export class AuthService {
     return this.fireAuth.signInWithPopup(new GoogleAuthProvider()).then(
       (res) => {
         this.router.navigate(['/dashboard']);
-        localStorage.setItem('token', JSON.stringify(res.user?.uid));
+        localStorage.setItem('userId', JSON.stringify(res.user?.uid));
       },
       (err) => {
         alert(err.message);

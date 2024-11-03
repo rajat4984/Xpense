@@ -27,7 +27,13 @@ export class RegisterationComponent {
       this.email !== '' &&
       this.password !== '' &&
       this.password === this.confirmPassword
-    )
+    ) {
       this.authService.register(this.email, this.password);
+      this.toggleSwitch('login');
+    }
+
+    this.email = '';
+    this.password = '';
+    this.confirmPassword = '';
   }
 }
